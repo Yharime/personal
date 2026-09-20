@@ -1,5 +1,6 @@
 #include<stdio.h>
  #include<stdlib.h>
+ #include<time.h>
 
 
  void go_UW();//上
@@ -18,6 +19,7 @@ int flag[4] = {0};//有无移动的标记
 
 
  int main(){
+    srand((unsigned int)time(NULL));
     beg();
     deal();
     output();
@@ -35,6 +37,7 @@ int flag[4] = {0};//有无移动的标记
     px = 0;
     py = 0;
     step = 'A';
+    chess[0][0]='A';
  }
  void output(){
     int i,j;
@@ -117,32 +120,32 @@ int flag[4] = {0};//有无移动的标记
 
 
 void go_RW(){
-    chess[px][py] = step;//赋值
-    for(int i=0;i<4;i++)
-    flag[i] = 0;//重置移动可行性状态
     px++;//移动 
     step++;//切换下一字母
+    chess[px][py] = step;//赋值
+    for(int i=0;i<4;i++)
+    flag[i] = 0;//重置移动可行性状态 
 }
 void go_LW(){
-    chess[px][py] = step;
-    for(int i=0;i<4;i++)
-    flag[i] = 0;
     px--;
     step++;
-}
-void go_UW(){
     chess[px][py] = step;
     for(int i=0;i<4;i++)
     flag[i] = 0;
+}
+void go_UW(){
     py--;
     step++;
+    chess[px][py] = step;
+    for(int i=0;i<4;i++)
+    flag[i] = 0;
 }
 void go_DW(){
+    py++;
+    step++;
     chess[px][py]= step;
     for(int i=0;i<4;i++)
     flag[i] = 0;
-    py++;
-    step++;
 }
 
 /*
